@@ -38,18 +38,43 @@ If the distance is below a threshold, the face is recognized.
 🗂️ Project Structure
 
 Face_Recognition_System/
+
 │
+
 ├── dataset/
-│   ├── Vedant/
-│   └── Anaya/
+
+│ ├── Vedant/
+
+│ │ ├── image1.jpg
+
+│ │ ├── image2.jpg
+
+│ │ └── image3.jpg
+
+│ │
+
+│ └── Anaya/
+
+│ ├── image1.jpg
+
+│ └── image2.jpg
+
 │
-├── Screenshots/
-│   └── Output1.png
+
+├── screenshots/
+
+│ └── output1.png
+
 │
+
 ├── encode_faces.py
+
 ├── recognize_faces.py
+
 ├── debug_static.py
+
 ├── encodings.pickle
+
 └── README.md
 
 
@@ -68,21 +93,28 @@ Face_Recognition_System/
 - Pillow
 
 ⚙️ Setup Instructions
+
 1️⃣ Create Conda Environment
+
 conda create -n face_recog python=3.9
+
 conda activate face_recog
 
 2️⃣ Install Dependencies
+
 conda install -c conda-forge dlib
+
 pip install face-recognition opencv-python pillow numpy
 
 ▶️ How to Run the Project
+
 Step 1: Encode Faces
+
 python encode_faces.py
 
 Step 2: Run Face Recognition
-python recognize_faces.py
 
+python recognize_faces.py
 
 Press q to exit manually
 
