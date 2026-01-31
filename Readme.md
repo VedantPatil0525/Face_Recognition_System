@@ -57,7 +57,9 @@ Re-scanning the same person on the same date does not modify the record
 
 ```text
 Face_Recognition_System/
+
 │
+
 ├── dataset/
 │   ├── Vedant/
 │   │   ├── image1.jpg
@@ -68,12 +70,16 @@ Face_Recognition_System/
 │       ├── image1.jpg
 │       └── image2.jpg
 │
-├── screenshots/
-│   └── output1.png
+├── Screenshots/
+│   └── Output1.png
 │
+
 ├── encode_faces.py
+
 ├── recognize_faces.py
+
 ├── debug_static.py
+
 ├── encodings.pickle
 ├── scanned.csv
 └── README.md
@@ -95,6 +101,7 @@ NumPy
 Pillow
 
 ⚙️ Setup Instructions
+
 1️⃣ Create Conda Environment
 
 conda create -n face_recog python=3.9
@@ -108,6 +115,7 @@ conda install -c conda-forge dlib
 pip install face-recognition opencv-python pillow numpy
 
 ▶️ How to Run the Project
+
 Step 1: Encode Faces
 
 python encode_faces.py
@@ -115,7 +123,6 @@ python encode_faces.py
 Step 2: Run Face Scanning System
 
 python recognize_faces.py
-
 
 Face scan logs are stored in face_scan_log.csv
 
