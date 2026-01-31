@@ -4,29 +4,32 @@ A real-time Face Recognition and Face Scanning System built using Python, OpenCV
 
 This project is designed as a base system that can be extended into a full-fledged Attendance Management System in future versions. 
 
+
 🚀 Features 
 
-Real-time face detection and recognition 
+- Real-time face detection and recognition 
 
-Supports multiple faces in a single frame 
+- Supports multiple faces in a single frame 
 
-Uses pre-trained deep learning face embeddings (128-D vectors) 
+- Uses pre-trained deep learning face embeddings (128-D vectors) 
 
-Face scan logging with date & time (CSV) 
+- Face scan logging with date & time (CSV) 
 
-Prevents repeated scans for the same person on the same day 
+- Prevents repeated scans for the same person on the same day 
 
-Automatically closes after successful face scan (with delay) 
+- Automatically closes after successful face scan (with delay) 
 
-Works efficiently on CPU (no GPU required) 
+- Works efficiently on CPU (no GPU required) 
 
-Modular and easy-to-extend architecture 
+- Modular and easy-to-extend architecture 
+
 
 🖼️ Demo Screenshot 
 
 ![Face Recognition Demo](Screenshots/Output1.png) 
 
 The system scanning and recognizing Vedant and Anaya simultaneously in real time. 
+
 
 🧠 How It Works (Concept) 
 
@@ -46,19 +49,18 @@ Live face embeddings are compared with stored embeddings using Euclidean distanc
 
 When a known face is scanned: 
 
-Name, date, and time are logged into a CSV file 
+- Name, date, and time are logged into a CSV file 
 
-The scan is recorded only once per person per day 
+- The scan is recorded only once per person per day 
 
-Re-scanning the same person on the same date does not modify the record 
+- Re-scanning the same person on the same date does not modify the record 
+
 
 🗂️ Project Structure
 
 ```text
 Face_Recognition_System/
-
 │
-
 ├── dataset/
 │   ├── Vedant/
 │   │   ├── image1.jpg
@@ -72,13 +74,9 @@ Face_Recognition_System/
 ├── screenshots/
 │   └── output1.png
 │
-
 ├── encode_faces.py
-
 ├── recognize_faces.py
-
 ├── debug_static.py
-
 ├── encodings.pickle
 ├── scanned.csv
 └── README.md
@@ -87,17 +85,18 @@ Face_Recognition_System/
 
 🛠️ Technologies Used 
 
-Python 3.9 
+- Python 3.9 
 
-OpenCV 
+- OpenCV 
 
-dlib 
+- dlib 
 
-face_recognition 
+- face_recognition 
 
-NumPy 
+- NumPy 
 
-Pillow 
+- Pillow 
+
 
 ⚙️ Setup Instructions 
 
@@ -113,6 +112,7 @@ conda install -c conda-forge dlib
 
 pip install face-recognition opencv-python pillow numpy 
 
+
 ▶️ How to Run the Project 
 
 Step 1: Encode Faces python encode_faces.py 
@@ -123,11 +123,12 @@ python recognize_faces.py
 
 python recognize_faces.py 
 
-Face scan logs are stored in face_scan_log.csv 
+- Face scan logs are stored in face_scan_log.csv 
 
-Press q to exit manually 
+- Press q to exit manually 
 
-Or the system auto-closes 5 seconds after successful scan 
+- Or the system auto-closes 5 seconds after successful scan 
+
 
 📄 Scanned Output (CSV) 
 
@@ -137,45 +138,49 @@ Name,Date,Time
 
 Vedant,2026-01-31,23:11:42 
 
-Each entry represents the first successful scan of the day 
+- Each entry represents the first successful scan of the day 
 
-Logs are not updated on repeated scans on the same date 
+- Logs are not updated on repeated scans on the same date 
+
 
 🎯 Use Cases 
 
-Face Scanning & Identity Verification 
+- Face Scanning & Identity Verification 
 
-Entry Logging Systems 
+- Entry Logging Systems 
 
-Smart Classroom Foundations 
+- Smart Classroom Foundations 
 
-Access Control (base version) 
+- Access Control (base version) 
 
-Academic & Research Projects 
+- Academic & Research Projects 
+
 
 ⚠️ Limitations 
 
-Performance depends on lighting conditions 
+- Performance depends on lighting conditions 
 
-Accuracy may reduce with occlusion (masks, caps) 
+- Accuracy may reduce with occlusion (masks, caps) 
 
-Not intended for large-scale or enterprise datasets 
+- Not intended for large-scale or enterprise datasets 
 
-Currently uses CSV instead of a database 
+- Currently uses CSV instead of a database 
+
 
 🔮 Future Enhancements 
 
-Convert face scan logs into a full Attendance Management System 
+- Convert face scan logs into a full Attendance Management System 
 
-Subject-wise or session-wise attendance GUI using Tkinter or PyQt 
+- Subject-wise or session-wise attendance GUI using Tkinter or PyQt 
 
-Database integration (SQLite / MySQL) 
+- Database integration (SQLite / MySQL) 
 
-Web-based interface using Flask 
+- Web-based interface using Flask 
 
-Unknown face logging 
+- Unknown face logging 
 
-Emotion or mask detection 
+- Emotion or mask detection 
+
 
 ⭐ If you like this project 
 
