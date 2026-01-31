@@ -54,7 +54,7 @@ Re-scanning the same person on the same date does not modify the record
 
 🗂️ Project Structure
 
-'''text
+```text
 Face_Recognition_System/
 
 │
@@ -82,7 +82,7 @@ Face_Recognition_System/
 ├── encodings.pickle
 ├── scanned.csv
 └── README.md
-'''
+```
 
 
 🛠️ Technologies Used 
