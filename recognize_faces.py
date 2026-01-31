@@ -3,11 +3,15 @@ import pickle
 import face_recognition
 import numpy as np
 import time
-# from PIL import Image
+import csv
+from datetime import datetime
+import os
 
 # Load encodings
 with open("encodings.pickle", "rb") as f:
     data = pickle.load(f)
+
+markes_names = set()
 
 video = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
@@ -17,6 +21,37 @@ if not video.isOpened():
 
 face_detected = False
 detection_time = None
+
+SCANNED_FACES = "scanned.csv"
+
+def scan_face(name):
+    now = datetime.now()
+    today_date = now.strftime("%Y-%m-%d")
+    current_time = now.strftime("%H:%M:%S")
+
+    # If file does not exist, create it and add header
+    if not os.path.exists(SCANNED_FACES):
+        with open(SCANNED_FACES, 'w', newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(['Name','Date','Time'])
+
+    # Read existing faces
+    with open(SCANNED_FACES, 'r') as f:
+        reader = csv.reader(f)
+        records = list(reader)
+
+    # Check for duplicate entry (same name & same date)
+    for row in records[1:]:
+        if row[0] == name and row[1] == today_date:
+            print(f"Face already scanned for {name} today.")
+            return
+        
+    # Append new face entry
+    with open(SCANNED_FACES, 'a', newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow([name, today_date, current_time])
+
+    print(f"Face scanned for {name} at {current_time}!!")
 
 while True:
     ret, frame = video.read()
@@ -36,6 +71,11 @@ while True:
         if True in matches:
             name = data["names"][matches.index(True)]
 
+            # Scan face and add in csv file
+            if name not in markes_names:
+                markes_names.add(name)
+                scan_face(name)
+
             # 🔑 START TIMER WHEN FACE IS DETECTED
             if not face_detected:
                 face_detected = True
@@ -51,7 +91,7 @@ while True:
     cv2.imshow("Face Recognition System", frame)
 
     # 🔒 CLOSE WINDOW AFTER 5 SECONDS OF DETECTION
-    if face_detected and (time.time() - detection_time >= 10):
+    if face_detected and (time.time() - detection_time >= 5):
         break
 
     if cv2.waitKey(1) & 0xFF == ord("q"):
