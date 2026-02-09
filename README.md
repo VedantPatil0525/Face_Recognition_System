@@ -1,59 +1,77 @@
-📘 Face Recognition & Face Scanning System using OpenCV & Python 
+<!--  -->
 
-A real-time Face Recognition and Face Scanning System built using Python, OpenCV, dlib, and face_recognition. The system detects and recognizes multiple faces from a live webcam feed, logs the first successful scan per person per day, and automatically terminates after recognition. 
+📘 Face Recognition & Face Scanning System using OpenCV & Python
 
-This project is designed as a base system that can be extended into a full-fledged Attendance Management System in future versions. 
+A real-time Face Recognition and Face Scanning System built using Python, OpenCV, dlib, and face_recognition.
+The system detects and recognizes multiple faces from a live webcam feed, logs the first successful scan per person per day, captures a screenshot of the detected face, and automatically terminates after recognition.
+
+This project is designed as a base system that can be extended into a full-fledged Attendance Management System in future versions.
+
+🚀 Features
+
+Real-time face detection and recognition
+
+Supports multiple faces in a single frame
+
+Uses pre-trained deep learning face embeddings (128-D vectors)
+
+Face scan logging with date & time (CSV)
+
+Prevents repeated scans for the same person on the same day
+
+Automatically captures a screenshot on successful face scan
+
+Screenshots are saved with name, date, and time
+
+Unknown faces are detected but not logged or saved
+
+Automatically closes after successful face scan (with delay)
+
+Works efficiently on CPU (no GPU required)
+
+Modular and easy-to-extend architecture
 
 
-🚀 Features 
+🖼️ Demo Screenshot
 
-- Real-time face detection and recognition 
+![Face Recognition Demo](Screenshots/Output1.png)
 
-- Supports multiple faces in a single frame 
+The system scanning and recognizing Vedant and Anaya simultaneously in real time.
 
-- Uses pre-trained deep learning face embeddings (128-D vectors) 
+🧠 How It Works (Concept)
 
-- Face scan logging with date & time (CSV) 
+1️⃣ Face Detection
 
-- Prevents repeated scans for the same person on the same day 
+Faces are detected from dataset images and live webcam frames using dlib’s HOG-based face detector.
 
-- Automatically closes after successful face scan (with delay) 
+2️⃣ Face Encoding
 
-- Works efficiently on CPU (no GPU required) 
+Each detected face is converted into a 128-dimensional numerical embedding that uniquely represents facial features.
 
-- Modular and easy-to-extend architecture 
+3️⃣ Face Matching
 
+Live face embeddings are compared with stored embeddings using Euclidean distance.
+If the distance is below a defined threshold, the face is recognized.
 
-🖼️ Demo Screenshot 
+4️⃣ Face Scan Logging & Screenshot Capture
 
-![Face Recognition Demo](Screenshots/Output1.png) 
+When a known face is scanned:
 
-The system scanning and recognizing Vedant and Anaya simultaneously in real time. 
+Name, date, and time are logged into a CSV file
 
+The scan is recorded only once per person per day
 
-🧠 How It Works (Concept) 
+A screenshot of the webcam frame is captured and saved in PNG format
 
-1️⃣ Face Detection 
+Screenshot filename includes name, date, and time
 
-Faces are detected from dataset images and live webcam frames using dlib’s HOG-based face detector. 
+Re-scanning the same person on the same date does not modify the CSV
 
-2️⃣ Face Encoding 
+When an unknown face is scanned:
 
-Each detected face is converted into a 128-dimensional numerical embedding that uniquely represents facial features. 
+No CSV entry is created
 
-3️⃣ Face Matching 
-
-Live face embeddings are compared with stored embeddings using Euclidean distance. If the distance is below a defined threshold, the face is recognized. 
-
-4️⃣ Face Scan Logging 
-
-When a known face is scanned: 
-
-- Name, date, and time are logged into a CSV file 
-
-- The scan is recorded only once per person per day 
-
-- Re-scanning the same person on the same date does not modify the record 
+No screenshot is saved
 
 
 🗂️ Project Structure
@@ -72,7 +90,8 @@ Face_Recognition_System/
 │       └── image2.jpg
 │
 ├── screenshots/
-│   └── output1.png
+│   ├── output1.png
+│   └── Vedant_20260210_000215.png
 │
 ├── encode_faces.py
 ├── recognize_faces.py
@@ -83,105 +102,97 @@ Face_Recognition_System/
 ```
 
 
-🛠️ Technologies Used 
+🛠️ Technologies Used
 
-- Python 3.9 
+Python 3.9
 
-- OpenCV 
+OpenCV
 
-- dlib 
+dlib
 
-- face_recognition 
+face_recognition
 
-- NumPy 
+NumPy
 
-- Pillow 
+Pillow
 
+⚙️ Setup Instructions
+1️⃣ Create Conda Environment
+conda create -n face_recog python=3.9
+conda activate face_recog
 
-⚙️ Setup Instructions 
+2️⃣ Install Dependencies
+conda install -c conda-forge dlib
+pip install face-recognition opencv-python pillow numpy
 
-1️⃣ Create Conda Environment 
+▶️ How to Run the Project
+Step 1: Encode Faces
+python encode_faces.py
 
-conda create -n face_recog python=3.9 
-
-conda activate face_recog 
-
-2️⃣ Install Dependencies 
-
-conda install -c conda-forge dlib 
-
-pip install face-recognition opencv-python pillow numpy 
-
-
-▶️ How to Run the Project 
-
-Step 1: Encode Faces python encode_faces.py 
-
-Step 2: Run Face Scanning System 
-
-python recognize_faces.py 
-
-python recognize_faces.py 
-
-- Face scan logs are stored in face_scan_log.csv 
-
-- Press q to exit manually 
-
-- Or the system auto-closes 5 seconds after successful scan 
+Step 2: Run Face Scanning System
+python recognize_faces.py
 
 
-📄 Scanned Output (CSV) 
+Face scan logs are stored in scanned.csv
 
-Example: 
+Screenshots are saved in the screenshots/ folder
 
-Name,Date,Time 
+Press q to exit manually
 
-Vedant,2026-01-31,23:11:42 
+Or the system auto-closes 5 seconds after successful scan
 
-- Each entry represents the first successful scan of the day 
+📄 Scanned Output (CSV)
 
-- Logs are not updated on repeated scans on the same date 
+Example:
 
+Name,Date,Time
 
-🎯 Use Cases 
-
-- Face Scanning & Identity Verification 
-
-- Entry Logging Systems 
-
-- Smart Classroom Foundations 
-
-- Access Control (base version) 
-
-- Academic & Research Projects 
+Vedant,2026-01-31,23:11:42
 
 
-⚠️ Limitations 
+Each entry represents the first successful scan of the day
 
-- Performance depends on lighting conditions 
+Logs are not updated on repeated scans on the same date
 
-- Accuracy may reduce with occlusion (masks, caps) 
+🎯 Use Cases
 
-- Not intended for large-scale or enterprise datasets 
+Face Scanning & Identity Verification
 
-- Currently uses CSV instead of a database 
+Entry Logging Systems
+
+Smart Classroom Foundations
+
+Access Control (base version)
+
+Academic & Research Projects
+
+⚠️ Limitations
+
+Performance depends on lighting conditions
+
+Accuracy may reduce with occlusion (masks, caps)
+
+Not intended for large-scale or enterprise datasets
+
+Currently uses CSV instead of a database
 
 
-🔮 Future Enhancements 
+🔮 Future Enhancements
 
-- Convert face scan logs into a full Attendance Management System 
+Convert face scan logs into a full Attendance Management System
 
-- Subject-wise or session-wise attendance GUI using Tkinter or PyQt 
+Subject-wise or session-wise attendance
 
-- Database integration (SQLite / MySQL) 
+GUI using Tkinter or PyQt
 
-- Web-based interface using Flask 
+Database integration (SQLite / MySQL)
 
-- Unknown face logging 
+Web-based interface using Flask
 
-- Emotion or mask detection 
+Unknown face logging
 
+Emotion or mask detection
 
-⭐ If you like this project 
+⭐ If you like this project
 
 Give it a ⭐ on GitHub — it motivates further improvements!

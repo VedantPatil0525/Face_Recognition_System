@@ -7,6 +7,11 @@ import csv
 from datetime import datetime
 import os
 
+SCREENSHOT_DIR = "Screenshots"
+
+if not os.path.exists(SCREENSHOT_DIR):
+    os.makedirs(SCREENSHOT_DIR)
+
 # Load encodings
 with open("encodings.pickle", "rb") as f:
     data = pickle.load(f)
@@ -21,6 +26,7 @@ if not video.isOpened():
 
 face_detected = False
 detection_time = None
+screenshot_taken = False
 
 SCANNED_FACES = "scanned.csv"
 
@@ -80,6 +86,17 @@ while True:
             if not face_detected:
                 face_detected = True
                 detection_time = time.time()
+
+            # Take Screenshot
+            if not screenshot_taken:
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                filename = f"{name}_{timestamp}.png"
+                filepath = os.path.join(SCREENSHOT_DIR, filename)
+
+                cv2.imwrite(filepath, frame)
+                screenshot_taken = True
+
+                print(f"Screenshot saved: {filepath}")
 
         top, right, bottom, left = box
         top *= 2; right *= 2; bottom *= 2; left *= 2
