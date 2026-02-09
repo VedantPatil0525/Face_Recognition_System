@@ -1,6 +1,6 @@
 <!--  -->
 
-**📘 Face Recognition & Face Scanning System using OpenCV & Python**
+# **📘 Face Recognition & Face Scanning System using OpenCV & Python**
 
 A real-time Face Recognition and Face Scanning System built using Python, OpenCV, dlib, and face_recognition.
 The system detects and recognizes multiple faces from a live webcam feed, logs the first successful scan per person per day, captures a screenshot of the detected face, and automatically terminates after recognition.
